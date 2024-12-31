@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcxwlhhog348x"]
+
+[ext_resource type="Script" path="res://scenes/dudas/scripts/player.gd" id="1_rji6k"]
+[ext_resource type="Texture2D" uid="uid://do8dcfau2726" path="res://assets/visual/player/player_animations.png" id="2_nbnln"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqo3t"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umo2n"]
+atlas = ExtResource("2_nbnln")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avytp"]
+atlas = ExtResource("2_nbnln")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6t6el"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umo2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avytp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_rji6k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dqo3t")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+limit_bottom = 256
+position_smoothing_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6t6el")
+autoplay = "default"
+frame_progress = 0.0654918
